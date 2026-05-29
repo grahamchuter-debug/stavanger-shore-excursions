@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CruisePortDayPlanner } from "@/components/cruise-port-day-planner";
+import {
+  ExploreNorwegianPorts,
+  explorePortsFromStavanger,
+} from "@/components/explore-norwegian-ports";
 import { JsonLd } from "@/components/json-ld";
 import { PageHero } from "@/components/page-hero";
 import { TourCard } from "@/components/tour-card";
@@ -193,6 +197,8 @@ export default function Home() {
             <CruisePortDayPlanner />
           </div>
         </section>
+
+        <ExploreNorwegianPorts config={explorePortsFromStavanger} />
 
         <section id="faqs" className="border-t bg-surface-muted">
           <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">

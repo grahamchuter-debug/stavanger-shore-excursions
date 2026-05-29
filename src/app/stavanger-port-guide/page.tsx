@@ -158,6 +158,19 @@ export default function StavangerPortGuidePage() {
           closes.
         </p>
       </section>
+
+      <section>
+        <p>
+          Also visiting Flam during your cruise? Read our{" "}
+          <a
+            href="https://flamshoreexcursions.com"
+            className="font-medium text-[var(--norway-blue)] underline-offset-2 hover:underline"
+          >
+            Flam Shore Excursions
+          </a>{" "}
+          guide for excursion ideas, port information and cruise planning advice.
+        </p>
+      </section>
     </ContentPage>
   );
 }
