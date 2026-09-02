@@ -75,7 +75,7 @@ export const explorePortsFromStavanger: ExploreNorwegianPortsConfig = {
     <>
       Many Norwegian cruises combine Stavanger with Flam, one of Norway&apos;s
       most famous fjord destinations. Discover shore excursions, port guides and
-      independent cruise planning resources for Flam — including{" "}
+      independent cruise planning resources for Flam, including{" "}
       <a
         href="https://flamshoreexcursions.com"
         className="font-medium text-[var(--norway-blue)] underline-offset-2 hover:underline"

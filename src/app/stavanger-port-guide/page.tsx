@@ -17,6 +17,7 @@ const pageMeta = {
 export const metadata: Metadata = buildPageMetadata(pageMeta);
 
 const relatedLinks = [
+  { label: "City or Lysefjord?", href: "/stavanger-city-or-lysefjord" },
   { label: "Shore excursions", href: "/stavanger-shore-excursions" },
   { label: "One day in Stavanger", href: "/one-day-in-stavanger" },
   { label: "Ship schedule", href: "/ship-schedule" },
@@ -32,7 +33,7 @@ const faqs = [
   {
     question: "Do cruise ships tender in Stavanger or dock at the pier?",
     answer:
-      "Most vessels dock at Stavanger's main cruise and harbour facilities. Tender operations are uncommon but possible — check your cruise app on the morning of arrival for the final method.",
+      "Most vessels dock at Stavanger's main cruise and harbour facilities. Tender operations are uncommon but possible. Check your cruise app on the morning of arrival for the final method.",
   },
   {
     question: "Are there restrooms and Wi-Fi near the Stavanger cruise port?",
@@ -50,7 +51,7 @@ export default function StavangerPortGuidePage() {
   return (
     <ContentPage
       title="Stavanger Port Guide for Cruise Passengers"
-      lead="Everything you need to navigate Stavanger cruise port — pier location, walking routes, facilities, and how to reach shore excursions without losing precious port time."
+      lead="Everything you need to navigate Stavanger cruise port. pier location, walking routes, facilities, and how to reach shore excursions without losing precious port time."
       heroImage={pageMeta.ogImage}
       heroImageAlt={pageMeta.ogImageAlt}
       pagePath={pageMeta.path}
@@ -95,7 +96,7 @@ export default function StavangerPortGuidePage() {
           </li>
         </ul>
         <p>
-          Central Stavanger is compact — ideal for cruise passengers who want
+          Central Stavanger is compact. ideal for cruise passengers who want
           easy access to walking tours without long coach transfers.
         </p>
       </section>
@@ -122,7 +123,7 @@ export default function StavangerPortGuidePage() {
           Docking is the norm in Stavanger, which means you walk straight ashore
           without waiting for tender boats. If your captain anchors in the
           harbour instead, follow crew instructions for tender boarding and allow
-          extra time both directions — tender queues can delay your return to
+          extra time both directions. tender queues can delay your return to
           ship on time if you cut it too close.
         </p>
       </section>

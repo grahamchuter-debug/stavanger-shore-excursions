@@ -73,14 +73,14 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
           <p
             className={`${excursion.heroBadge ? "mt-3" : "mt-5"} badge-accent-red inline-flex rounded-full px-4 py-1.5 text-xs font-medium text-white/95 backdrop-blur-sm sm:text-sm`}
           >
-            Return to ship on time — cruise passenger friendly
+            Return to ship on time. Cruise passenger friendly.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href={excursion.bookingHref ?? siteConfig.shoreExcursionsPath}
               className="btn-primary sm:text-base"
             >
-              {excursion.bookingLabel ?? "Book this excursion"}
+              {excursion.bookingLabel ?? "Explore this excursion"}
             </Link>
             <Link
               href={siteConfig.shoreExcursionsPath}
@@ -272,7 +272,7 @@ export function ExcursionDetailPage({ excursion }: ExcursionDetailPageProps) {
                 href={excursion.bookingHref ?? siteConfig.shoreExcursionsPath}
                 className="btn-primary sm:px-8 sm:py-3.5 sm:text-base"
               >
-                {excursion.bookingLabel ?? "Book this excursion"}
+                {excursion.bookingLabel ?? "Explore this excursion"}
               </Link>
               <Link
                 href={siteConfig.shoreExcursionsPath}

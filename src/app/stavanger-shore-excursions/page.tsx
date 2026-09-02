@@ -18,6 +18,7 @@ const pageMeta = {
 export const metadata: Metadata = buildPageMetadata(pageMeta);
 
 const relatedLinks = [
+  { label: "City or Lysefjord?", href: "/stavanger-city-or-lysefjord" },
   { label: "Stavanger port guide", href: "/stavanger-port-guide" },
   { label: "One day in Stavanger", href: "/one-day-in-stavanger" },
   { label: "Ship schedule", href: "/ship-schedule" },
@@ -26,9 +27,9 @@ const relatedLinks = [
 
 const faqs = [
   {
-    question: "Should cruise passengers book Stavanger excursions in advance?",
+    question: "Should cruise passengers arrange Stavanger excursions in advance?",
     answer:
-      "Yes on busy summer days when several ships share the harbour. Pre-booking Lysefjord cruises and walking tours secures your departure slot and helps you return to ship on time without last-minute queue stress.",
+      "On busy summer days when several ships share the harbour, popular Lysefjord sailings and walking tours can sell out with operators. Arranging ahead helps lock a departure slot and plan your return buffer.",
   },
   {
     question: "How long do the main Stavanger shore excursions take?",
@@ -43,7 +44,7 @@ const faqs = [
   {
     question: "Do Stavanger tours guarantee return to the cruise ship?",
     answer:
-      "Ship-sponsored excursions usually include a ship guarantee. Independent tickets do not — you are responsible for meeting your vessel's all-aboard time. Always confirm timing on your cruise app before booking.",
+      "Ship-sponsored excursions usually include a ship guarantee. Independent tickets do not. You are responsible for meeting your vessel's all-aboard time. Always confirm timing on your cruise app before arranging tours.",
   },
 ] as const;
 
@@ -51,7 +52,7 @@ export default function StavangerShoreExcursionsPage() {
   return (
     <ContentPage
       title="Stavanger Shore Excursions"
-      lead="Hand-picked Lysefjord cruises and city walking tours for cruise ship guests, planned with enough buffer time to return to your ship on schedule."
+      lead="Lysefjord sailings and city walking tours for cruise ship guests, with planning focused on realistic hours ashore and return-to-ship buffers."
       heroImage={pageMeta.ogImage}
       heroImageAlt={pageMeta.ogImageAlt}
       pagePath={pageMeta.path}
@@ -61,30 +62,29 @@ export default function StavangerShoreExcursionsPage() {
       ctaTitle="Compare Stavanger tours for your port day"
       ctaText="Use the guides below to match excursions to your ship's timetable, then choose the option that fits your hours ashore."
       ctaHref="/stavanger-shore-excursions"
-      ctaButtonLabel="View tour details"
+      ctaButtonLabel="Explore excursion details"
     >
       <section>
         <h2>Why Stavanger is ideal for cruise shore excursions</h2>
         <p>
           Stavanger combines a compact, walkable city centre with quick access to
-          Lysefjord — one of Norway&apos;s most dramatic waterways. Cruise
+          Lysefjord, one of Norway&apos;s most dramatic waterways. Cruise
           passengers step off near Vågen harbour and can reach fjord cruise
           piers, Old Town lanes, and tourist information within minutes, which
           means less transfer time and more time for the experiences that matter.
         </p>
         <p>
-          Before booking, read our{" "}
+          Before choosing, read our{" "}
           <Link href="/stavanger-port-guide">Stavanger port guide</Link> for
           walking distances from your berth and check the{" "}
-          <Link href="/ship-schedule">ship schedule hub</Link> when monthly
-          timetables are published.
+          <Link href="/ship-schedule">ship schedule hub</Link> for published arrival and departure times.
         </p>
       </section>
 
       <CruisePortDayPlanner />
 
       <section>
-        <h2>Lysefjord Cruise — headline scenic tour</h2>
+        <h2>Lysefjord cruise: headline scenic sailing</h2>
         <p>
           The Lysefjord cruise is the signature Stavanger shore excursion for
           cruise passengers who want fjord drama without a full-day inland
@@ -104,11 +104,11 @@ export default function StavangerShoreExcursionsPage() {
       </section>
 
       <section>
-        <h2>Stavanger Walking Tour — explore the city on foot</h2>
+        <h2>Stavanger walking tour: explore the city on foot</h2>
         <p>
           Prefer the city over the fjord? A locally guided walking tour covers
           Gamle Stavanger, Stavanger Cathedral, Valbergtårnet, Øvre Holmegate
-          colour street, and harbour viewpoints — with 1-hour highlights or a
+          colour street, and harbour viewpoints, with 1-hour highlights or a
           2-hour extended route for longer port calls.
         </p>
         <p>
@@ -119,9 +119,20 @@ export default function StavangerShoreExcursionsPage() {
       </section>
 
       <section>
+        <h2>City or Lysefjord?</h2>
+        <p>
+          The first decision is usually whether to stay in Stavanger or head into
+          Lysefjord. Seeing Pulpit Rock from the water is not the same as hiking
+          Preikestolen. Read the{" "}
+          <Link href="/stavanger-city-or-lysefjord">city or Lysefjord guide</Link>{" "}
+          before locking a plan.
+        </p>
+      </section>
+
+      <section>
         <h2>How to choose the right excursion for your port time</h2>
         <p>
-          Match the tour to the hours your cruise line guarantees ashore — not
+          Match the tour to the hours your cruise line guarantees ashore, not
           just the published arrival time. Late arrivals and early departures
           happen, especially on North Sea crossings.
         </p>
@@ -148,15 +159,15 @@ export default function StavangerShoreExcursionsPage() {
       </section>
 
       <section>
-        <h2>Booking tips for cruise passengers</h2>
+        <h2>Timing tips for cruise passengers</h2>
         <p>
           Ship-sponsored excursions cost more but usually include a guarantee
           that the operator will get you back before departure. Independent
-          bookings save money yet require you to watch the clock yourself — build
+          bookings save money yet require you to watch the clock yourself. Build
           at least 45 minutes of buffer before all aboard.
         </p>
         <p>
-          On peak days, book Lysefjord sailings and walking tours early. Keep
+          On peak days, arrange Lysefjord sailings and walking tours early with operators. Keep
           your cruise card, photo ID, and a phone with your ship&apos;s daily
           programme handy so you can adjust if the captain changes port times.
         </p>

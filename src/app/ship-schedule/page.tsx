@@ -1,91 +1,93 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { JsonLd } from "@/components/json-ld";
-import { ShipScheduleShell } from "@/components/ship-schedule-shell";
+import { ContentPage } from "@/components/content-page";
+import { ShipScheduleMonthCards } from "@/components/ship-schedule-month-cards";
 import { buildPageMetadata } from "@/lib/site-metadata";
-import { shipScheduleHub } from "@/lib/ship-schedule-months";
-import { buildWebPageSchema } from "@/lib/site-schema";
-import { siteConfig } from "@/lib/site-config";
+import { imageAlts, siteImages } from "@/lib/site-images";
+import {
+  formatScheduleDate,
+  getStavangerMonthSummaries,
+  scheduleDisclaimer,
+  shipScheduleHubPath,
+  stavangerScheduleIntegrity,
+} from "@/lib/stavanger-schedules";
 
-const pageMeta = {
-  title: shipScheduleHub.title,
-  description: shipScheduleHub.description,
-  path: shipScheduleHub.path,
-} as const;
-
-export const metadata: Metadata = buildPageMetadata(pageMeta);
+export const metadata: Metadata = buildPageMetadata({
+  title: "Stavanger Cruise Ship Schedule 2026–2027",
+  description:
+    "Published Stavanger cruise ship calls for 2026 and 2027. Find your ship and date, then plan a realistic day ashore around the harbour or Lysefjord.",
+  path: shipScheduleHubPath,
+});
 
 export default function ShipScheduleHubPage() {
+  const months = getStavangerMonthSummaries();
+  const firstLabel = stavangerScheduleIntegrity.firstDate
+    ? formatScheduleDate(stavangerScheduleIntegrity.firstDate)
+    : "";
+  const lastLabel = stavangerScheduleIntegrity.lastDate
+    ? formatScheduleDate(stavangerScheduleIntegrity.lastDate)
+    : "";
+
   return (
-    <>
-      <JsonLd
-        data={[
-          buildWebPageSchema({
-            path: pageMeta.path,
-            title: `${pageMeta.title} | ${siteConfig.name}`,
-            description: pageMeta.description,
-          }),
-        ]}
-      />
-      <ShipScheduleShell
-        title="Stavanger Cruise Ship Schedule"
-        lead="A dedicated Stavanger cruise ship schedule hub is coming soon. Use your cruise line app for confirmed port times today, then plan excursions with return-to-ship friendly margins."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Ship Schedule" },
-        ]}
-      >
-        <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <div className="mx-auto max-w-3xl space-y-6">
-            <div className="rounded-2xl border border-slate-200 border-l-[3px] border-l-[var(--norway-red)] bg-white px-5 py-4 text-slate-800 shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-wide">
-                Schedule data coming soon
-              </p>
-              <p className="mt-2 text-base leading-7">
-                Monthly Stavanger cruise ship timetables — arrivals, departures,
-                and busy port days — will be published here. Until then, confirm
-                all times on your cruise line app and use our port planning tools
-                below.
-              </p>
-            </div>
+    <ContentPage
+      title="Stavanger cruise ship schedule"
+      lead={`Published calls for Stavanger from ${firstLabel} to ${lastLabel}. Find your month, check arrival and departure times, then choose a city or Lysefjord plan that fits.`}
+      heroImage={siteImages.hero}
+      heroImageAlt={imageAlts.hero}
+      pagePath={shipScheduleHubPath}
+      pageDescription={metadata.description as string}
+      breadcrumbs={[
+        { label: "Home", href: "/" },
+        { label: "Ship schedule" },
+      ]}
+      ctaTitle="Plan your Stavanger port day"
+      ctaText="Once you know your hours ashore, compare harbour walks with Lysefjord options and return-to-ship buffers."
+      ctaHref="/one-day-in-stavanger"
+      ctaButtonLabel="Plan your Stavanger day"
+      relatedLinks={[
+        { label: "Stavanger excursions", href: "/stavanger-shore-excursions" },
+        { label: "City or Lysefjord?", href: "/stavanger-city-or-lysefjord" },
+        { label: "Port guide", href: "/stavanger-port-guide" },
+        { label: "One day in Stavanger", href: "/one-day-in-stavanger" },
+      ]}
+    >
+      <section>
+        <p className="rounded border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950">
+          {scheduleDisclaimer}
+        </p>
+        <p className="mt-4 text-base leading-7 text-slate-700">
+          This local timetable is filtered from the Norway Shore Excursions master
+          schedule: {stavangerScheduleIntegrity.total} Stavanger calls,{" "}
+          {stavangerScheduleIntegrity.byYear["2026"] ?? 0} in 2026 and{" "}
+          {stavangerScheduleIntegrity.byYear["2027"] ?? 0} in 2027, across{" "}
+          {stavangerScheduleIntegrity.uniqueShips} ships. No 2028 data is published
+          here.
+        </p>
+      </section>
 
-            <p className="text-base leading-7 text-slate-700 sm:text-lg">
-              Stavanger is one of Norway&apos;s busiest cruise ports. Knowing
-              when your ship arrives and leaves helps you choose between a
-              Lysefjord cruise, a walking tour of Gamle Stavanger, or independent
-              harbour time without risking a late return to the gangway.
-            </p>
+      <section>
+        <h2>Browse by month</h2>
+        <ShipScheduleMonthCards months={months} />
+      </section>
 
-            <ul className="flex flex-wrap gap-3">
-              <li>
-                <Link
-                  href={siteConfig.shoreExcursionsPath}
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-[var(--norway-blue)] hover:text-[var(--norway-blue)]"
-                >
-                  Shore excursions
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/stavanger-port-guide"
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-[var(--norway-blue)] hover:text-[var(--norway-blue)]"
-                >
-                  Stavanger port guide
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/one-day-in-stavanger"
-                  className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-[var(--norway-blue)] hover:text-[var(--norway-blue)]"
-                >
-                  One day in Stavanger
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </ShipScheduleShell>
-    </>
+      <section>
+        <h2>Why ship times matter in Stavanger</h2>
+        <p>
+          A short call may suit the harbour and Gamle Stavanger. A longer day can
+          support a Lysefjord sailing if the operator timing and your return buffer
+          allow it. Arrival and departure alone do not prove a Pulpit Rock hike
+          fits. Always leave a clear buffer before all aboard.
+        </p>
+        <p>
+          Continue to the{" "}
+          <Link href="/stavanger-city-or-lysefjord">
+            city or Lysefjord decision guide
+          </Link>
+          , <Link href="/stavanger-shore-excursions">excursion options</Link>, or
+          the <Link href="/stavanger-port-guide">port guide</Link>.
+        </p>
+      </section>
+    </ContentPage>
   );
 }

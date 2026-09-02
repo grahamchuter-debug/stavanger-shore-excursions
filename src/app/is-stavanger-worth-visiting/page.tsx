@@ -17,6 +17,7 @@ const pageMeta = {
 export const metadata: Metadata = buildPageMetadata(pageMeta);
 
 const relatedLinks = [
+  { label: "City or Lysefjord?", href: "/stavanger-city-or-lysefjord" },
   { label: "Shore excursions", href: "/stavanger-shore-excursions" },
   { label: "Stavanger port guide", href: "/stavanger-port-guide" },
   { label: "One day in Stavanger", href: "/one-day-in-stavanger" },
@@ -32,7 +33,7 @@ const faqs = [
   {
     question: "What makes Stavanger special compared with other Norwegian ports?",
     answer:
-      "Stavanger pairs a historic wooden Old Town with immediate access to Lysefjord — you get both city and signature fjord scenery without long coach transfers from the pier.",
+      "Stavanger pairs a historic wooden Old Town with immediate access to Lysefjord. you get both city and signature fjord scenery without long coach transfers from the pier.",
   },
   {
     question: "When is Stavanger not worth leaving the ship?",
@@ -50,7 +51,7 @@ export default function IsStavangerWorthVisitingPage() {
   return (
     <ContentPage
       title="Is Stavanger Worth Visiting?"
-      lead="An honest look at whether Stavanger deserves your hours ashore — Lysefjord drama, walkable Old Town culture, and what cruise passengers gain on different port lengths."
+      lead="An honest look at whether Stavanger deserves your hours ashore. Lysefjord drama, walkable Old Town culture, and what cruise passengers gain on different port lengths."
       heroImage={pageMeta.ogImage}
       heroImageAlt={pageMeta.ogImageAlt}
       pagePath={pageMeta.path}
@@ -62,7 +63,7 @@ export default function IsStavangerWorthVisitingPage() {
         <h2>Short answer: yes for most cruise itineraries</h2>
         <p>
           Stavanger is one of the strongest mainstream cruise ports in southwest
-          Norway. You get a real city — restaurants, museums, street life — plus
+          Norway. You get a real city. restaurants, museums, street life. plus
           quick access to Lysefjord scenery that rivals anywhere on the Norwegian
           coast. For most guests, going ashore is worthwhile.
         </p>
@@ -72,7 +73,7 @@ export default function IsStavangerWorthVisitingPage() {
         <h2>What you gain by going ashore</h2>
         <ul>
           <li>Lysefjord cruises with cliff, waterfall, and Pulpit Rock area views</li>
-          <li>Gamle Stavanger — one of Europe&apos;s best-preserved wooden towns</li>
+          <li>Gamle Stavanger. one of Europe&apos;s best-preserved wooden towns</li>
           <li>Compact walking routes ideal for independent and guided exploration</li>
           <li>Harbour dining and Norwegian culture without long transfers</li>
         </ul>
@@ -98,7 +99,7 @@ export default function IsStavangerWorthVisitingPage() {
         <p>
           Extremely short calls, heavy rain without indoor plans, or expecting
           Pulpit Rock itself from the pier will frustrate some guests. The plateau
-          hike is a separate full-day adventure inland — the Lysefjord cruise
+          hike is a separate full-day adventure inland; the Lysefjord cruise
           shows the landscape from the water instead.
         </p>
       </section>
@@ -107,7 +108,7 @@ export default function IsStavangerWorthVisitingPage() {
         <h2>Verdict for cruise passengers</h2>
         <p>
           If your ship grants a normal half-day or longer in port, Stavanger is
-          worth visiting. Book the Lysefjord cruise for fjord first-timers, choose
+          worth visiting. Choose the Lysefjord cruise for fjord first-timers, choose
           the walking tour for city lovers, and always plan to return to ship on
           time with a 30–45 minute buffer.
         </p>

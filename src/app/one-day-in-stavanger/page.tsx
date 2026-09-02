@@ -17,6 +17,7 @@ const pageMeta = {
 export const metadata: Metadata = buildPageMetadata(pageMeta);
 
 const relatedLinks = [
+  { label: "City or Lysefjord?", href: "/stavanger-city-or-lysefjord" },
   { label: "Shore excursions", href: "/stavanger-shore-excursions" },
   { label: "Stavanger port guide", href: "/stavanger-port-guide" },
   { label: "Ship schedule", href: "/ship-schedule" },
@@ -32,7 +33,7 @@ const faqs = [
   {
     question: "Can I combine a Lysefjord cruise and walking tour in one day?",
     answer:
-      "Yes if your ship stays at least eight hours. Run the walking tour first thing, enjoy lunch near the harbour, then board an afternoon Lysefjord sailing — or reverse the order on early-arrival days.",
+      "Yes if your ship stays at least eight hours. Run the walking tour first thing, enjoy lunch near the harbour, then board an afternoon Lysefjord sailing, or reverse the order on early-arrival days.",
   },
   {
     question: "Should I book tickets before my cruise arrives in Stavanger?",
@@ -104,7 +105,7 @@ export default function OneDayInStavangerPage() {
         <p>
           Prefer urban culture over fjords? Choose the 1-hour highlights walk or
           the 2-hour extended route through Gamle Stavanger, cathedral,
-          Valbergtårnet, colour street, and waterfront viewpoints — all ending
+          Valbergtårnet, colour street, and waterfront viewpoints. all ending
           near the cruise port.
         </p>
         <p>

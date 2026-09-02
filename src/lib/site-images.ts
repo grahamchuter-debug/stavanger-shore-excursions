@@ -1,4 +1,4 @@
-/** Local images for reliable static export — no external hotlinks. */
+/** Local images for reliable static export. no external hotlinks. */
 export const siteImages = {
   hero: "/images/stavanger-hero.png",
   portGuide: "/images/stavanger-port-guide.png",
@@ -23,11 +23,11 @@ export const imageAlts = {
   gamleStavanger:
     "Cobblestone lane in Gamle Stavanger with white wooden houses, flower boxes, and potted plants",
   colorStreet:
-    "Colourful painted shopfronts on Øvre Holmegate — Fargegaten — in central Stavanger",
+    "Colourful painted shopfronts on Øvre Holmegate (Fargegaten) in central Stavanger",
   waterfront:
     "Stavanger waterfront at Vågen harbour with cruise ships and harbour-front buildings",
   lysefjordCruiseCard:
-    "Preikestolen overlooking Lysefjord — headline scenic cruise excursion from Stavanger",
+    "Preikestolen overlooking Lysefjord, the landmark associated with Stavanger fjord cruises",
   walkingTourCard:
     "Cobblestone street in Gamle Stavanger on the Stavanger walking tour route for cruise passengers",
 } as const;

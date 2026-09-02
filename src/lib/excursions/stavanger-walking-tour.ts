@@ -6,13 +6,13 @@ export const stavangerWalkingTourExcursion: ExcursionData = {
   path: "/excursions/stavanger-walking-tour",
   title: "Stavanger Walking Tour",
   headline: "Stavanger Walking Tour for Cruise Passengers",
-  lead: "A locally guided Stavanger walking tour designed for cruise passengers who want to see the city on foot — historic Old Town lanes, cathedral, colour street, and harbour views without committing to a long coach or fjord tour.",
+  lead: "A locally guided Stavanger walking tour designed for cruise passengers who want to see the city on foot: historic Old Town lanes, cathedral, colour street, and harbour views without committing to a long coach or fjord tour.",
   metaTitle: "Stavanger Walking Tour for Cruise Passengers",
   metaDescription:
     "Guided Stavanger walking tour for cruise passengers with 1-hour highlights and 2-hour extended routes. Old Town, cathedral, Valbergtårnet, and return-to-ship friendly timing from Vågen harbour.",
   heroImage: siteImages.gamleStavanger,
   heroImageAlt: imageAlts.gamleStavanger,
-  heroBadge: "🚶 Ideal when you want the city on foot",
+  heroBadge: "Ideal when you want the city on foot",
   summary: {
     duration: "1 hour highlights or 2 hour extended walk",
     meetingPoint:
@@ -54,7 +54,7 @@ export const stavangerWalkingTourExcursion: ExcursionData = {
     "Ends near central Stavanger and the cruise port area",
   ],
   description: [
-    "Not every Stavanger port day needs a fjord cruise. This walking tour suits cruise guests who want authentic city storytelling on foot — cobbled Old Town lanes, harbour life, and landmarks you can reach quickly from Vågen.",
+    "Not every Stavanger port day needs a fjord cruise. This walking tour suits cruise guests who want authentic city storytelling on foot: cobbled Old Town lanes, harbour life, and landmarks you can reach quickly from Vågen.",
     "Your guide paces the route for ship schedules, with clear meeting instructions at the harbour or tourist information area. The one-hour option covers the essentials; the two-hour extended walk adds viewpoints, street art, and waterfront stretches toward Hundvåg Bridge.",
     "Because the tour stays in central Stavanger, it pairs well with an afternoon Lysefjord sailing on longer port days, or stands alone when your ship has only a half-day ashore.",
   ],
@@ -106,7 +106,7 @@ export const stavangerWalkingTourExcursion: ExcursionData = {
   ],
   timingAdvice: [
     "Choose the 1-hour walk if your ship is in port roughly 4–6 hours; pick the 2-hour route when you have 6+ hours and want deeper neighbourhood coverage.",
-    "Wear comfortable shoes — Old Town cobbles and viewpoint steps can be uneven.",
+    "Wear comfortable shoes. Old Town cobbles and viewpoint steps can be uneven.",
     "Allow 30–45 minutes after the tour ends to reach your gangway before all aboard.",
     "If rain is forecast, bring a light jacket; coastal weather changes quickly in Stavanger.",
   ],
@@ -119,7 +119,7 @@ export const stavangerWalkingTourExcursion: ExcursionData = {
     {
       question: "Where does the Stavanger walking tour meet?",
       answer:
-        "Tours typically meet at Vågen Harbour, near Stavanger Tourist Information or the cruise dock area. Your voucher confirms the exact pin — screenshot it before leaving the ship.",
+        "Tours typically meet at Vågen Harbour, near Stavanger Tourist Information or the cruise dock area. Your voucher confirms the exact pin. Screenshot it before leaving the ship.",
     },
     {
       question: "Is the walking tour suitable for mobility-limited guests?",
@@ -134,7 +134,7 @@ export const stavangerWalkingTourExcursion: ExcursionData = {
     {
       question: "Can I combine the walking tour with a Lysefjord cruise?",
       answer:
-        "Yes on longer port days. Run the walking tour first, then board an afternoon fjord sailing — or reverse the order if your cruise arrives early and the cruise departs mid-morning.",
+        "Yes on longer port days. Run the walking tour first, then board an afternoon fjord sailing, or reverse the order if your cruise arrives early and the cruise departs mid-morning.",
     },
   ],
   breadcrumbs: [
@@ -148,7 +148,7 @@ export const stavangerWalkingTourExcursion: ExcursionData = {
     { label: "One day in Stavanger", href: "/one-day-in-stavanger" },
   ],
   bookingHref: "/stavanger-shore-excursions",
-  bookingLabel: "Book this excursion",
+  bookingLabel: "Explore Stavanger excursions",
   ctaTitle: "Ready to explore Stavanger on foot?",
   ctaText:
     "Choose your duration, confirm meeting times for your ship, and keep enough buffer to return before all aboard.",

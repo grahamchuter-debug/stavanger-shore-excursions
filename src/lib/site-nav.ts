@@ -1,6 +1,6 @@
 export const siteNavLinks = [
   { label: "Excursions", href: "/stavanger-shore-excursions" },
-  { label: "Port Guide", href: "/stavanger-port-guide" },
-  { label: "One Day", href: "/one-day-in-stavanger" },
-  { label: "Worth Visiting?", href: "/is-stavanger-worth-visiting" },
+  { label: "Plan your day", href: "/one-day-in-stavanger" },
+  { label: "Ship schedule", href: "/ship-schedule" },
+  { label: "Port guide", href: "/stavanger-port-guide" },
 ] as const;

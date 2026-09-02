@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "What is the best month for Stavanger cruise shore excursions?",
     answer:
-      "May through September offers the most reliable Lysefjord cruise sailings, long daylight, and walkable weather for Old Town tours. June and July are busiest — book excursions early.",
+      "May through September offers the most reliable Lysefjord cruise sailings, long daylight, and walkable weather for Old Town tours. June and July are busiest. Book excursions early.",
   },
   {
     question: "Is Stavanger crowded in summer?",
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "Does weather affect Lysefjord cruises from Stavanger?",
     answer:
-      "Operators may adjust routes in high winds or poor visibility. Keep flexible plans and monitor announcements — have a city walking backup if sailing is delayed.",
+      "Operators may adjust routes in high winds or poor visibility. Keep flexible plans and monitor announcements. have a city walking backup if sailing is delayed.",
   },
 ] as const;
 
@@ -64,18 +64,18 @@ export default function BestTimeToVisitStavangerPage() {
           Most Stavanger cruise calls arrive between late spring and early autumn.
           Longer daylight, active Lysefjord operators, and comfortable walking
           weather make this the best window for shore excursions. June through
-          August sees the highest ship volumes — plan ahead.
+          August sees the highest ship volumes. plan ahead.
         </p>
       </section>
 
       <section>
         <h2>June and July: best scenery, busiest ports</h2>
         <p>
-          Mid-summer delivers the classic Norway experience cruise guests expect —
-          green fjord walls, busy harbours, and full excursion timetables. Book
+          Mid-summer delivers the classic Norway experience cruise guests expect:
+          green fjord walls, busy harbours, and full excursion timetables. Arrange
           Lysefjord cruises and walking tours in advance, and use our{" "}
-          <Link href="/ship-schedule">ship schedule hub</Link> when monthly data
-          is live to spot overlapping ship days.
+          <Link href="/ship-schedule">ship schedule hub</Link> to spot overlapping
+          ship days.
         </p>
       </section>
 
@@ -102,7 +102,7 @@ export default function BestTimeToVisitStavangerPage() {
         <h2>Planning tips whatever month you visit</h2>
         <ul>
           <li>Pre-book headline excursions on peak summer itineraries</li>
-          <li>Pack a waterproof layer — coastal weather shifts quickly</li>
+          <li>Pack a waterproof layer. coastal weather shifts quickly</li>
           <li>Build 30–45 minutes buffer before all aboard every season</li>
           <li>
             Read the{" "}

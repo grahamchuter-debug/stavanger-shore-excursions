@@ -26,9 +26,9 @@ export type CruisePortDayPlannerConfig = {
 
 export const stavangerPortDayPlannerConfig: CruisePortDayPlannerConfig = {
   portName: "Stavanger",
-  heading: "Stavanger Cruise Smart Planner™",
-  subtitle: "Plan your shore excursions around your actual time in port.",
-  supportingCopy: "Built specifically for cruise passengers visiting Stavanger.",
+  heading: "Stavanger port-day planner",
+  subtitle: "Think through shore options around your hours in port.",
+  supportingCopy: "A practical checklist for cruise passengers visiting Stavanger.",
   returnBufferNote:
     "Always confirm your cruise line's official all-aboard time, as this may be earlier than the published departure time.",
   tiers: [
@@ -50,7 +50,7 @@ export const stavangerPortDayPlannerConfig: CruisePortDayPlannerConfig = {
       dayPlan: [
         "Disembark promptly and stay close to Vågen harbour",
         "Choose one short activity: highlights walk or self-guided Old Town loop",
-        "Skip Lysefjord cruises — not enough margin unless your operator confirms timing",
+        "Skip Lysefjord cruises: not enough margin unless your operator confirms timing",
         "Be back at the gangway by your recommended return time",
       ],
     },

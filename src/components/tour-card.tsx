@@ -18,7 +18,7 @@ export function TourCard({
   accent = "blue",
 }: TourCardProps) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md transition-shadow hover:shadow-lg">
+    <article className="group flex h-full flex-col overflow-hidden border border-[var(--border-light)] bg-[var(--surface)]">
       <div className="relative h-52 w-full shrink-0 overflow-hidden bg-slate-100">
         <img
           src={image}
@@ -34,7 +34,7 @@ export function TourCard({
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <h3 className="mb-2 text-lg font-semibold leading-snug text-slate-900">
+        <h3 className="font-display mb-2 text-lg font-semibold leading-snug text-slate-900">
           {title}
         </h3>
 
@@ -43,7 +43,7 @@ export function TourCard({
         </p>
 
         <Link href={href} className="btn-primary-on-light w-fit">
-          View Tour
+          View excursion
         </Link>
       </div>
     </article>

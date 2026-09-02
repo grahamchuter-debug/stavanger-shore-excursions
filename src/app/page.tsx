@@ -2,23 +2,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CruisePortDayPlanner } from "@/components/cruise-port-day-planner";
-import {
-  ExploreNorwegianPorts,
-  explorePortsFromStavanger,
-} from "@/components/explore-norwegian-ports";
 import { JsonLd } from "@/components/json-ld";
 import { PageHero } from "@/components/page-hero";
 import { TourCard } from "@/components/tour-card";
-import { buildPageMetadata } from "@/lib/site-metadata";
-import { buildFaqSchema, buildItemListSchema, buildWebPageSchema } from "@/lib/site-schema";
-import { imageAlts, siteImages } from "@/lib/site-images";
 import { siteConfig } from "@/lib/site-config";
+import { imageAlts, siteImages } from "@/lib/site-images";
+import { buildPageMetadata } from "@/lib/site-metadata";
+import {
+  buildFaqSchema,
+  buildItemListSchema,
+  buildWebPageSchema,
+} from "@/lib/site-schema";
+import {
+  formatScheduleDate,
+  stavangerScheduleIntegrity,
+} from "@/lib/stavanger-schedules";
+import { stavangerTourCards, stavangerTourListItems } from "@/lib/stavanger-tours";
 
 const pageMeta = {
-  title:
-    "Stavanger Shore Excursions | Cruise Port Tours & Lysefjord Guides for Passengers",
+  title: "Stavanger Shore Excursions | Cruise Port Day Planning",
   description:
-    "Plan your Stavanger cruise port day with Lysefjord cruises, walking tours, port guides, and return-to-ship friendly shore excursion advice.",
+    "Your cruise ship is calling at Stavanger. Compare a harbour city day with Lysefjord sailings, understand Pulpit Rock in context, and check published ship schedules.",
   path: "/",
 } as const;
 
@@ -29,49 +33,37 @@ export const metadata: Metadata = buildPageMetadata({
   absoluteTitle: true,
 });
 
-const trustBadges = [
-  { label: "Return to ship on time", accent: true },
-  { label: "Cruise passenger friendly", accent: false },
-  { label: "Stavanger fjord specialists", accent: false },
-] as const;
-
-const popularTours = [
-  {
-    name: "Lysefjord Cruise",
-    description:
-      "Headline scenic fjord cruise from Stavanger harbour into dramatic Lysefjord landscapes.",
-  },
-  {
-    name: "Stavanger Walking Tour",
-    description:
-      "Guided Old Town and city walk for cruise passengers — 1 or 2 hour options from Vågen harbour.",
-  },
-] as const;
-
 const homeFaqs = [
   {
-    question: "What is the best shore excursion in Stavanger for cruise passengers?",
+    question: "Is this site for cruise passengers calling at Stavanger?",
     answer:
-      "The Lysefjord cruise is the signature scenic choice for first-time visitors. If you prefer staying in the city, the Stavanger walking tour covers Old Town, cathedral, and colour street within return-to-ship friendly timings.",
+      "Yes. This is an independent Stavanger cruise-port planning site. It helps you understand the harbour day, check published ship calls and explore excursion ideas. Confirm final timings with your cruise line.",
   },
   {
-    question: "How far is Stavanger cruise port from Lysefjord cruise departures?",
+    question: "Should I stay in Stavanger or go to Lysefjord?",
     answer:
-      "Most Lysefjord sailings depart from the central harbour area near Vågen, often within a 10–20 minute walk from cruise berths. Confirm the meeting point on your voucher the night before.",
+      "It depends on time ashore and what you want from the day. The harbour and Gamle Stavanger suit a city focus. A Lysefjord cruise is the main scenic sailing option on this site. Seeing Pulpit Rock from the water is not the same as hiking Preikestolen. Use the city-or-Lysefjord guide and your ship schedule before deciding.",
   },
   {
-    question: "Can I do a walking tour and Lysefjord cruise on the same port day?",
+    question: "Can I hike Pulpit Rock on a cruise call?",
     answer:
-      "Yes when your ship stays at least six to eight hours. Run the walking tour first, then an afternoon fjord sailing — always keep 30–45 minutes buffer before all aboard.",
+      "Hiking Preikestolen is a different day from a harbour walk or a Lysefjord sightseeing cruise. Schedule duration alone does not prove a hike fits. Check travel time, trail time, fitness and return buffer carefully before choosing any hiking option.",
   },
   {
-    question: "Should I book Stavanger shore excursions independently?",
+    question: "Can I book shore excursions on this site?",
     answer:
-      "Independent bookings often cost less than ship tours, but you manage your own return-to-ship timing. Use our port day planner, confirm all-aboard on your cruise app, and build buffer before the gangway closes.",
+      "This site is for planning and discovery. There is no live booking checkout here. Use the excursion pages and guides to understand options, then arrange tours through operators or your usual booking channel.",
   },
 ] as const;
 
 export default function Home() {
+  const firstLabel = stavangerScheduleIntegrity.firstDate
+    ? formatScheduleDate(stavangerScheduleIntegrity.firstDate)
+    : "";
+  const lastLabel = stavangerScheduleIntegrity.lastDate
+    ? formatScheduleDate(stavangerScheduleIntegrity.lastDate)
+    : "";
+
   return (
     <>
       <JsonLd
@@ -81,179 +73,280 @@ export default function Home() {
             title: pageMeta.title,
             description: pageMeta.description,
           }),
-          buildItemListSchema(popularTours),
+          buildItemListSchema(stavangerTourListItems),
           buildFaqSchema(homeFaqs),
         ]}
       />
-      <main className="min-h-screen bg-white text-slate-900">
+      <main>
         <PageHero
           image={siteImages.hero}
           imageAlt={imageAlts.hero}
-          centered
           className="min-h-[28rem] md:min-h-[32rem]"
         >
-          <h1 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-6xl lg:text-7xl">
-            Stavanger Shore Excursions
-          </h1>
-
-          <p className="mx-auto mb-6 max-w-3xl text-base text-white/90 sm:mb-8 sm:text-xl md:text-2xl">
-            Choose shore excursions that fit your port time — Lysefjord
-            cruises and city walks with return-to-ship friendly planning.
+          <p className="hero-eyebrow mb-3 text-xs font-semibold uppercase tracking-[0.2em]">
+            {siteConfig.name}
           </p>
-
-          <a href="#tours" className="btn-primary px-8 py-4 text-base sm:text-lg">
-            View Excursions
-          </a>
-
-          <ul className="mx-auto mt-6 flex max-w-2xl flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
-            {trustBadges.map((badge) => (
-              <li
-                key={badge.label}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium text-white/95 backdrop-blur-sm sm:px-4 sm:text-sm ${
-                  badge.accent
-                    ? "badge-accent-red"
-                    : "border border-white/25 bg-white/10"
-                }`}
-              >
-                {badge.label}
-              </li>
-            ))}
-          </ul>
+          <h1 className="font-display mb-5 max-w-4xl text-3xl font-semibold leading-tight text-white sm:text-5xl">
+            Your cruise ship is calling at Stavanger. What should you do with the
+            day?
+          </h1>
+          <p className="max-w-2xl text-base leading-7 text-white/90 sm:text-lg">
+            Harbour city, Lysefjord gateway and Pulpit Rock context for cruise
+            passengers, with published ship schedules through 2027.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link
+              href={siteConfig.shoreExcursionsPath}
+              className="btn-primary w-full justify-center sm:w-auto"
+            >
+              Explore Stavanger excursions
+            </Link>
+            <Link
+              href="/ship-schedule"
+              className="btn-secondary w-full justify-center sm:w-auto"
+            >
+              Check your ship schedule
+            </Link>
+          </div>
         </PageHero>
 
-        <section id="about" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
-          <h2 className="mb-6 text-3xl font-bold sm:text-4xl">
-            Explore Stavanger Like a Cruise Insider
-          </h2>
-
-          <p className="text-base leading-8 text-slate-700 sm:text-lg">
-            Welcome to Stavanger Shore Excursions — independent planning for
-            cruise passengers calling at Norway&apos;s southwest coast. Compare
-            Lysefjord scenic cruises, locally guided walking tours through Gamle
-            Stavanger, and port-day tools built around your ship&apos;s timetable
-            so you can return before all aboard.
-          </p>
-        </section>
-
-        <section id="tours" className="border-t bg-surface-muted">
-          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <h2 className="mb-2 text-3xl font-bold sm:mb-3 sm:text-4xl">
-            Popular Stavanger Tours
-          </h2>
-          <p className="mb-4 max-w-2xl text-slate-600">
-            Cruise-friendly excursions that depart near central Stavanger and
-            fit typical port-day schedules.
-          </p>
-          <p className="mb-8 max-w-2xl rounded-lg border border-slate-200 border-l-[3px] border-l-[var(--norway-red)] bg-white px-4 py-3 text-sm leading-6 text-slate-700">
-            Every excursion featured is selected to fit comfortably within a
-            typical Stavanger cruise port call.
-          </p>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <TourCard
-              href="/excursions/lysefjord-cruise"
-              image={siteImages.lysefjordCruise}
-              imageAlt={imageAlts.lysefjordCruiseCard}
-              title="Lysefjord Cruise Shore Excursion from Stavanger"
-              description="Cruise from Stavanger into the dramatic Lysefjord, passing steep cliffs, waterfalls, island scenery and views toward the famous Pulpit Rock area on a cruise-friendly fjord experience."
-              accent="blue"
-            />
-            <TourCard
-              href="/excursions/stavanger-walking-tour"
-              image={siteImages.gamleStavanger}
-              imageAlt={imageAlts.walkingTourCard}
-              title="Stavanger Walking Tour for Cruise Passengers"
-              description="A locally guided Stavanger walking tour for guests who want to see the city on foot — 1-hour highlights or a 2-hour extended route without a long coach or fjord commitment."
-              accent="red"
-            />
-          </div>
-          </div>
-        </section>
-
-        <section id="why-independent" className="border-t bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-            <h2 className="mb-4 text-2xl font-bold sm:text-3xl">
-              Why book Stavanger shore excursions independently
+        <section className="border-b border-[var(--border-light)] bg-[var(--surface)] py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Your day in Stavanger</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Stay in the city, or head into Lysefjord?
             </h2>
-            <p className="text-base leading-8 text-slate-700 sm:text-lg">
-              Ship-sponsored tours include operator guarantees, but independent
-              bookings often offer more choice, lower prices, and flexible
-              timings when you understand your port schedule. Stavanger&apos;s
-              harbour, Lysefjord departures, and Old Town walks are all reachable
-              on foot from most cruise berths — so you spend less time in
-              transfers and more time on the experience.
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Most cruise passengers face this choice first. Neither is
+              automatically better. Hours ashore, pace and whether you want
+              harbour streets or fjord scenery decide it.
             </p>
-            <ul className="mt-6 list-disc space-y-2 pl-5 text-base leading-8 text-slate-700">
-              <li>Compare Lysefjord sailings and walking tours side by side</li>
-              <li>Match excursions to your actual hours ashore, not generic packages</li>
-              <li>Build a 30–45 minute buffer before all aboard on every plan</li>
-              <li>Use our port guide and day planner without cruise-line markups</li>
+            <div className="mt-10 grid gap-8 md:grid-cols-2">
+              <div className="border-t border-[var(--border-light)] pt-5">
+                <h3 className="font-display text-xl font-semibold text-slate-900">
+                  Stay in Stavanger
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Vågen harbour, Gamle Stavanger and the compact centre. Sensible
+                  when time is short or you prefer walking over a fixed sailing.
+                </p>
+                <Link
+                  href="/stavanger-city-or-lysefjord"
+                  className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--fjord)] underline-offset-4 hover:underline"
+                >
+                  City day guidance
+                </Link>
+              </div>
+              <div className="border-t border-[var(--border-light)] pt-5">
+                <h3 className="font-display text-xl font-semibold text-slate-900">
+                  Head into Lysefjord
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  A scenic fjord cruise is the main harbour-based option on this
+                  site. You may see Pulpit Rock from below. That is not the same
+                  as hiking Preikestolen.
+                </p>
+                <Link
+                  href="/excursions/lysefjord-cruise"
+                  className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--fjord)] underline-offset-4 hover:underline"
+                >
+                  Lysefjord cruise
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--border-light)] bg-surface-muted py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Find your ship</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Check when your ship is in Stavanger
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              {stavangerScheduleIntegrity.total} published Stavanger calls from{" "}
+              {firstLabel} to {lastLabel}. Arrival and departure times shape what
+              is realistic ashore. Always confirm with your cruise line.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/ship-schedule" className="btn-outline-dark">
+                Open Stavanger ship schedule
+              </Link>
+              <Link
+                href="/stavanger-city-or-lysefjord"
+                className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--fjord)] underline-offset-4 hover:underline"
+              >
+                Then decide city or Lysefjord
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section id="tours" className="scroll-mt-24 py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Excursion options</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Stavanger ideas that match a cruise day
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Two genuine options on this site: a Lysefjord sailing and a city
+              walking tour. Durations are approximate. Keep a return buffer.
+            </p>
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              {stavangerTourCards.map((tour) => (
+                <TourCard key={tour.href} {...tour} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-[var(--border-light)] bg-[var(--surface)] py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Pulpit Rock, clearly</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Seeing Pulpit Rock is not hiking Preikestolen
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Pulpit Rock and Preikestolen are the same plateau. A Lysefjord
+              cruise can offer views from the water. Hiking to the top is a
+              separate inland outing with its own travel, trail and timing
+              demands. Do not treat them as interchangeable for a port day.
+            </p>
+            <Link
+              href="/stavanger-city-or-lysefjord"
+              className="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--fjord)] underline-offset-4 hover:underline"
+            >
+              Read the full decision guide
+            </Link>
+          </div>
+        </section>
+
+        <section className="py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">First time in Stavanger</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Useful planning guides
+            </h2>
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  href: "/stavanger-port-guide",
+                  title: "Cruise port guide",
+                  text: "Harbour orientation and how berth location affects walking and excursions.",
+                },
+                {
+                  href: "/one-day-in-stavanger",
+                  title: "One day in Stavanger",
+                  text: "A practical port-day shape for city time, fjord time and return buffers.",
+                },
+                {
+                  href: "/is-stavanger-worth-visiting",
+                  title: "Is Stavanger worth visiting?",
+                  text: "Honest context for passengers choosing how to spend limited hours ashore.",
+                },
+              ].map((item) => (
+                <li
+                  key={item.href}
+                  className="border-t border-[var(--border-light)] pt-5"
+                >
+                  <h3 className="font-display text-lg font-semibold text-slate-900">
+                    <Link
+                      href={item.href}
+                      className="underline-offset-4 hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.text}
+                  </p>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
 
-        <section id="planner" className="border-t bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-            <CruisePortDayPlanner />
+        <section className="border-y border-[var(--border-light)] bg-surface-muted py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Port-day planning</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Think in hours, pace and return buffer
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Use published times as a planning start, then leave margin before
+              all aboard. This planner helps you think through the day. It does
+              not invent a guaranteed excursion fit.
+            </p>
+            <div className="mt-8">
+              <CruisePortDayPlanner />
+            </div>
           </div>
         </section>
 
-        <ExploreNorwegianPorts config={explorePortsFromStavanger} />
-
-        <section id="faqs" className="border-t bg-surface-muted">
-          <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-            <h2 className="mb-6 text-2xl font-bold text-slate-900 sm:text-3xl">
-              Stavanger cruise passenger FAQs
+        <section className="py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Return to ship</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Plan the walk back before you leave the gangway
             </h2>
-            <dl className="space-y-6">
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              Your cruise line sets all aboard. Build your own buffer after any
+              excursion ends. Pier queues and weather can slow a short walk more
+              than you expect.
+            </p>
+          </div>
+        </section>
+
+        <section className="border-y border-[var(--border-light)] bg-[var(--surface)] py-14 sm:py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-eyebrow">Norway beyond Stavanger</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Planning other Norwegian ports?
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+              For multi-port itineraries, the national planning site covers the
+              wider Norway cruise picture.
+            </p>
+            <a
+              href={siteConfig.nationalAuthorityUrl}
+              className="mt-6 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--fjord)] underline-offset-4 hover:underline"
+            >
+              Norway Shore Excursions
+            </a>
+          </div>
+        </section>
+
+        <section className="py-14 sm:py-16">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
+            <p className="section-eyebrow">FAQ</p>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">
+              Stavanger cruise questions
+            </h2>
+            <dl className="mt-8 space-y-6">
               {homeFaqs.map((faq) => (
-                <div
-                  key={faq.question}
-                  className="rounded-lg border border-slate-200 border-l-[3px] border-l-[var(--norway-blue)] bg-white p-5 shadow-sm"
-                >
+                <div key={faq.question}>
                   <dt className="font-semibold text-slate-900">{faq.question}</dt>
-                  <dd className="mt-2 leading-7 text-slate-700">{faq.answer}</dd>
+                  <dd className="mt-2 text-sm leading-6 text-slate-600">
+                    {faq.answer}
+                  </dd>
                 </div>
               ))}
             </dl>
           </div>
         </section>
 
-        <section className="border-t bg-navy text-white">
-          <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-16">
-            <h2 className="text-2xl font-bold sm:text-3xl">
-              Plan your Stavanger port day with confidence
+        <section className="border-t border-[var(--border-light)] bg-navy py-14 text-white sm:py-16">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+            <h2 className="font-display text-2xl font-semibold sm:text-3xl">
+              Stavanger planning concierge
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
-              Browse shore excursions, read the port guide, and check the ship
-              schedule hub — everything built for cruise passengers who need to
-              return on time.
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
+              {siteConfig.contactEmailVerified
+                ? `Questions about shaping a Stavanger port day? Email ${siteConfig.contactEmail}.`
+                : "A destination email is being prepared. Until then, use the schedule, decision guide and excursion pages on this site."}
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={siteConfig.shoreExcursionsPath} className="btn-primary sm:text-base">
-                Book a Tour
-              </Link>
-              <Link href="/stavanger-port-guide" className="btn-secondary sm:text-base">
-                Stavanger Port Guide
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-t bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-            <h2 className="mb-4 text-2xl font-bold sm:text-3xl">
-              Check your ship time before booking
-            </h2>
-            <p className="mb-6 text-base leading-8 text-slate-700 sm:text-lg">
-              Match excursions to your arrival and departure times so you can
-              enjoy Stavanger and still return before all aboard.
-            </p>
-            <Link
-              href="/ship-schedule"
-              className="rounded-full border border-slate-200 bg-surface-muted px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-[var(--norway-blue)] hover:text-[var(--norway-blue)]"
-            >
-              Stavanger ship schedule hub
+            <Link href="/contact" className="btn-primary mt-6">
+              Contact
             </Link>
           </div>
         </section>
